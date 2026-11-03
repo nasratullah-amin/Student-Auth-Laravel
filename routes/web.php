@@ -1,4 +1,3 @@
-
 <?php
 
 use App\Http\Controllers\AuthController;
@@ -26,7 +25,7 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [
         AuthController::class,
         'login',
-    ])->name('login.store');
+    ])->middleware('throttle:5,1')->name('login.store');
 });
 
 Route::middleware('auth')->group(function () {
